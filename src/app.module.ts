@@ -1,15 +1,15 @@
 import { Module } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { ImageController } from './image/image/image.controller';
+import { CompressionController } from './compression/compression/compression.controller';
+import { CompressionModule } from './compression/compression/compression.module';
+
+import { CompressionService } from './compression/compression/compression.service';
+
 
 @Module({
-  imports: [ ServeStaticModule.forRoot({
-    rootPath: join(__dirname, '..', 'public'),
-  }),],
-  controllers: [AppController, ImageController],
-  providers: [AppService],
+  imports: [CompressionModule],
+  controllers: [CompressionController],
+  providers: [CompressionService],
 })
-export class AppModule {}
+export class AppModule { }
