@@ -30,6 +30,7 @@ export class CompressionController {
             throw new BadRequestException('No file uploaded');
         }
         try {
+            response.setHeader('Access-Control-Allow-Origin', '*')
             response.setHeader('Content-Type', 'application/png');
             response.setHeader('Content-Disposition', `attachment; filename=${file.originalname.split('.')[0]}-compressed.png}`);
             response.send(await this.compressionService.compressPNG(file))
